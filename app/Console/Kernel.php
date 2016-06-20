@@ -26,6 +26,6 @@ class Kernel extends ConsoleKernel
     {
         //* * * * * php /Library/WebServer/Documents/lyft/artisan schedule:run >> /dev/null 2>&1
         $schedule->command('lyft:locations')
-            ->hourly();
+            ->cron('0 */2 * * *');
     }
 }

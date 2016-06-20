@@ -1,0 +1,12 @@
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+/vendor
+.env
+*.iml
+.idea/
+_ide_helper.php
+.gitattributes
+.DS_Store
+index.html

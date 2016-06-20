@@ -14,45 +14,52 @@ class LyftController extends Controller
 
         $apis = [
             ['client' => '3Tcj_10h6Eba', 'secret' => 'V1lNt-9AMzZxWS6b4e7Lwk4hUdxXFWGG'],
-            ['client' => 'c4rFMb4GPNj_', 'secret' => 'rqOFaQBiRKB3bmm1_Y2qLQ_tE9NWzNKf'],
-            ['client' => 'Wj4AApiwzY9c', 'secret' => '0ACO0lRiQOuEBsACnRnmUN3PguDum3G1'],
-            ['client' => 'H1U4GtNq7d6y', 'secret' => 'O-3-TnHaGv4412ce7W59jcI0gnSoqbwc'],
-            ['client' => 'gCLrKGa7Bd9O', 'secret' => 'X_2xLEV-8FF2xNo7S9yc6r8Bt6ynv3Vh'],
-            ['client' => 'kgJJVnLMbz_B', 'secret' => 'vsO0smWKzgxqjmRaUKg1p4Qg21Ok85x6'],
-            ['client' => 'aM8Wr6omLrh7', 'secret' => 'sJJsw-cMQH7v5H8Ij7A_6o5XtM9-4RH4'],
-            ['client' => 'OOeivzzvKw_R', 'secret' => '5OlGY6FJcQ2KRzODaNlq_4m5CjOcPkrp'],
-            ['client' => 'V60vbSAwkpz-', 'secret' => 'WGZEoFFh3-uOKXM0u2RElQ4uTGF_Btbe'],
-            ['client' => '1bj4OW9x5RQZ', 'secret' => 'PZMCs7UNSRZl4KmVG20HK5zOJzqRM5uB'],
-            ['client' => 'jcaRNzlF2zUZ', 'secret' => 'p8Rymxqb1X6ZZe4D2LQTuZcmMp9woRL1'],
-            ['client' => 'LDTuio47NcXX', 'secret' => '_uDcXyjCzyIF-t-sOgJNi_oL38Mk-S9S'],
-            ['client' => 'yMxmGx-2lStg', 'secret' => '8GBhm91gWDawRLP50q6KM4M4L0-LjTjZ'],
-            ['client' => 'au4hzJnNMGky', 'secret' => 'HvTsBXxA9G-kRwk6knF1wwS9oEaZv77Z'],
-            ['client' => 'doPceRIS2xjm', 'secret' => 'Ao1KIwYUptWdCrIXoj36lXVf1ulUtMp-'],
-            ['client' => 'dNazrK7TlcOK', 'secret' => 'fBXvJ838O5fjOifOV6ypnHw6KBi0jMmD'],
-            ['client' => 'lLXN6kZ851zP', 'secret' => 'dFLO7cGTswyobxOX3jXrWvJ8vsr3qqY1'],
-            ['client' => 'gyFtBMN_z2ZI', 'secret' => 'Mg31kW17ZriesD4-7XRxHCVIGVe3xJjV'],
+            //['client' => 'c4rFMb4GPNj_', 'secret' => 'rqOFaQBiRKB3bmm1_Y2qLQ_tE9NWzNKf'],
+            //['client' => 'Wj4AApiwzY9c', 'secret' => '0ACO0lRiQOuEBsACnRnmUN3PguDum3G1'],
+            //['client' => 'H1U4GtNq7d6y', 'secret' => 'O-3-TnHaGv4412ce7W59jcI0gnSoqbwc'],
+            //['client' => 'gCLrKGa7Bd9O', 'secret' => 'X_2xLEV-8FF2xNo7S9yc6r8Bt6ynv3Vh'],
+            //['client' => 'kgJJVnLMbz_B', 'secret' => 'vsO0smWKzgxqjmRaUKg1p4Qg21Ok85x6'],
+            //['client' => 'aM8Wr6omLrh7', 'secret' => 'sJJsw-cMQH7v5H8Ij7A_6o5XtM9-4RH4'],
+            //['client' => 'OOeivzzvKw_R', 'secret' => '5OlGY6FJcQ2KRzODaNlq_4m5CjOcPkrp'],
+            //['client' => 'V60vbSAwkpz-', 'secret' => 'WGZEoFFh3-uOKXM0u2RElQ4uTGF_Btbe'],
+            //['client' => '1bj4OW9x5RQZ', 'secret' => 'PZMCs7UNSRZl4KmVG20HK5zOJzqRM5uB'],
+            //['client' => 'jcaRNzlF2zUZ', 'secret' => 'p8Rymxqb1X6ZZe4D2LQTuZcmMp9woRL1'],
+            //['client' => 'LDTuio47NcXX', 'secret' => '_uDcXyjCzyIF-t-sOgJNi_oL38Mk-S9S'],
+            //['client' => 'yMxmGx-2lStg', 'secret' => '8GBhm91gWDawRLP50q6KM4M4L0-LjTjZ'],
+            //['client' => 'au4hzJnNMGky', 'secret' => 'HvTsBXxA9G-kRwk6knF1wwS9oEaZv77Z'],
+            //['client' => 'doPceRIS2xjm', 'secret' => 'Ao1KIwYUptWdCrIXoj36lXVf1ulUtMp-'],
+            //['client' => 'dNazrK7TlcOK', 'secret' => 'fBXvJ838O5fjOifOV6ypnHw6KBi0jMmD'],
+            //['client' => 'lLXN6kZ851zP', 'secret' => 'dFLO7cGTswyobxOX3jXrWvJ8vsr3qqY1'],
+            //['client' => 'gyFtBMN_z2ZI', 'secret' => 'Mg31kW17ZriesD4-7XRxHCVIGVe3xJjV'],
         ];
 
         $sum = 0;
 
+	error_log("Started Script",0);
         foreach ($apis as $api) {
             $locations = $this->connectDifferentClients($locations, $api['client'], $api['secret'], $sum);
             $sum += 5;
         }
         $locations = json_encode($locations);
 
+	error_log("finished Script Ready to write on file",0);
         $myFile = "data/data.txt";
         $fh = fopen($myFile, 'a') or die("can't open file");
-        $stringData = "\n//" . Carbon::now()->toDayDateTimeString() . "\n";
+        error_log("File Opened",0);
+	$stringData = "\n//" . Carbon::now()->toDayDateTimeString() . "\n";
         fwrite($fh, $stringData);
+	error_log("Date Written",0);
         fwrite($fh, $locations);
+	error_log("Locations Written",0);
         fclose($fh);
+	error_log("DONE",0);
         return "done";
         //return view('lyft', compact('locations'));
     }
 
     public function connectDifferentClients($locations, $clientApi, $secret, $sum){
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.lyft.com/']);
+        error_log("Starting Request for client: " .$clientApi, 0); 
+	$client = new GuzzleHttp\Client(['base_uri' => 'https://api.lyft.com/']);
         $res = $client->request('POST', 'oauth/token', [
             'auth' => [$clientApi, $secret],
             'json' => [
@@ -62,7 +69,7 @@ class LyftController extends Controller
         ]);
         $body = json_decode($res->getBody());
         $accessToken = $body->access_token;
-
+	error_log("Got access token: " . $accessToken, 0);
         $locations = $this->getLocations($client, $accessToken, $locations, $sum);
 
         return $locations;
@@ -182,6 +189,8 @@ class LyftController extends Controller
             ['lat' => '25.909484', 'lng' => '-80.307999'],
             ['lat' => '25.908866', 'lng' => '-80.179939'],
         ];
+	
+	error_log("Gettin Geolocations from " . $sum . " to " . $sum + 5,0);
         for ($i = $sum; $i < $sum+5; $i++) {
             $locations = $this->multipleLocations($client, $accessToken, $locations, $arr[$i]['lat'], $arr[$i]['lng']);
             //sleep(10);
@@ -200,9 +209,11 @@ class LyftController extends Controller
             ]
         ]);
         $body2 = json_decode($res2->getBody());
-
+	
+	error_log("Rquest Successful to get DriverLocation",0);
         $drivers_line = $body2->nearby_drivers[1]->drivers;
         $drivers_normal = $body2->nearby_drivers[2]->drivers;
+	error_log("Got Drivers for [lat:" . $lat . ", lng:" . $lng . "]",0);
 
         foreach($drivers_line as $driver){
             for($i = 0; $i < count($driver->locations); $i++) {

@@ -10,13 +10,13 @@
         html { height: 100% }
         body { height: 100%; margin: 0; padding: 0; font-family:sans-serif; }
         #map-canvas { height: 100% }
-        h1 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000;}
-        h3 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 70px}
-        h5 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 140px; float: left;}
-        #all-examples-info { position:absolute; font-size:16px; padding-bottom: 20px; bottom: 0px; width:260px; line-height:150%; background-color: rgba(255, 171, 251, 0.5);}
+        h1 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 0px}
+        h3 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 55px}
+        h5 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 125px; float: left;}
+        #all-examples-info { position:absolute; font-size:16px; padding-bottom: 20px; bottom: 0px; width:210px; line-height:150%; background-color: rgba(255, 171, 251, 0.5);}
         #hider {padding:10px; position: absolute;}
         #slider {position:absolute;padding:20px;bottom:20px;z-index:10000;}
-        .slider.slider-vertical {height: 380px; margin-top: 60px; margin-left: 20px;}
+        .slider.slider-vertical {height: 310px; margin-top: 60px; margin-left: 20px;}
         .slider-handle.custom{background-color: #FF00BF;border-radius: 50%;}
         .slider-handle.custom::before {content: none;}
         .slider-tick.custom{border-radius: 50%; background: #FFFFFF;}
@@ -24,7 +24,7 @@
         .slider-selection.tick-slider-selection {background-image: -webkit-linear-gradient(top,#ff9ed9 0,#ff9ed9 100%);}
         .btn-custom {background: #FF00BF; color: #ffffff; border-radius: 0px; border-color: transparent;}
         .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .btn-custom:active, .btn-custom:active:focus, .open > .dropdown-toggle.btn-custom { background: #E500AB; border-color: transparent; color: #ffffff;}
-        .btn.sharp {border-radius:0; margin: 0px; width:260px;}
+        .btn.sharp {border-radius:0; margin: 0px; width:210px;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -60,6 +60,7 @@
     var lines = [];
     var ticks = [];
     var ticks_lables = [];
+    var ticks_position = [];
     var finalValue;
     jQuery.get('data/data.txt', function(data) {
         //process text file line by line
@@ -79,6 +80,7 @@
                 if (found < 0) {
                     ticks_lables.push(cleanedDate);
                     ticks.push(i+1);
+                    ticks_position.push(i/(lines.length)*100);
                 }
             }
         }
@@ -88,7 +90,9 @@
         // map options,
         var myOptions = {
             zoom: 11,
-            center: myLatlng
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
         };
         // standard map
         map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
@@ -123,7 +127,10 @@
         var ChangeData = function() {
             $a = slider.getValue();
             var dataGeo = JSON.parse(lines[$a]);
+            var date = lines[$a -1].replace('//','');
             $("#ridersNumber").text(dataGeo.length/4);
+            $("h3").html("Set Date: <div id='lastUpdated'></div>");
+            $("#lastUpdated").text(date);
             var data = {
                 max: 8,
                 data: dataGeo
@@ -133,8 +140,8 @@
         };
 
         var slider = $("#slider").slider({
-            min  : 0,
-            value: finalValue,
+            min  : 1,
+            value: finalValue-1,
             step: 2,
             ticks: ticks,
             ticks_labels: ticks_lables,

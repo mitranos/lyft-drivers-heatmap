@@ -11,14 +11,20 @@
         body { height: 100%; margin: 0; padding: 0; font-family:sans-serif; }
         #map-canvas { height: 100% }
         h1 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000;}
-        #all-examples-info { position:absolute; font-size:16px; padding:20px; bottom:20px; width:260px; line-height:150%; background-color: rgba(255, 171, 251, 0.5);}
+        h3 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 70px}
+        h5 { position:absolute; background:black; color:#FF00BF; padding:10px; font-weight:200; z-index:10000; margin-top: 140px; float: left;}
+        #all-examples-info { position:absolute; font-size:16px; padding-bottom: 20px; bottom: 0px; width:260px; line-height:150%; background-color: rgba(255, 171, 251, 0.5);}
+        #hider {padding:10px; position: absolute;}
         #slider {position:absolute;padding:20px;bottom:20px;z-index:10000;}
-        .slider.slider-vertical {height: 400px;}
+        .slider.slider-vertical {height: 380px; margin-top: 60px; margin-left: 20px;}
         .slider-handle.custom{background-color: #FF00BF;border-radius: 50%;}
         .slider-handle.custom::before {content: none;}
         .slider-tick.custom{border-radius: 50%; background: #FFFFFF;}
         .slider-tick.custom::before {content: none;}
         .slider-selection.tick-slider-selection {background-image: -webkit-linear-gradient(top,#ff9ed9 0,#ff9ed9 100%);}
+        .btn-custom {background: #FF00BF; color: #ffffff; border-radius: 0px; border-color: transparent;}
+        .btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .btn-custom:active, .btn-custom:active:focus, .open > .dropdown-toggle.btn-custom { background: #E500AB; border-color: transparent; color: #ffffff;}
+        .btn.sharp {border-radius:0; margin: 0px; width:260px;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -29,22 +35,51 @@
 </head>
 <body>
 <h1>Lyft Drivers Heatmap</h1>
+<h3>Last Updated: <div id="lastUpdated"></div></h3>
+<h5>  Riders Online <div id="ridersNumber" style="float:left; margin-right: 5px;"> </div></h5>
 <div id="map-canvas"></div>
 <div id="all-examples-info">
-    <input id="slider" type="text"/>
+    <div id="hider" class="btn btn-custom sharp" type="button">Hide Dates</div>
+    <div id="hide">
+        <input id="slider" type="text"/>
+    </div>
 </div>
 <script>
+    $("#hider").click(function(){
+        $("#hide").toggle();
+        
+        if ($.trim($(this).text()) === 'Hide Dates') {
+            $(this).text('Show Dates');
+            $(this).css("bottom", "0px");
+        } else {
+            $(this).text('Hide Dates');
+            $(this).css("bottom", "");      
+        }
+    });
+
     var lines = [];
     var ticks = [];
     var ticks_lables = [];
+    var finalValue;
     jQuery.get('data/data.txt', function(data) {
         //process text file line by line
         lines = data.split("\n");
+        finalValue = lines.length;
+
+        //Add Last Updated Text
+        $("#lastUpdated").text(lines[finalValue-2].replace('//',''));
+        
         for (var i = 0, len = lines.length; i < len; i++) {
             if(lines[i].indexOf('//') > -1)
             {
-                ticks_lables.push(lines[i].replace('//',''));
-                ticks.push(i+1);
+                var line = lines[i].replace('//','')
+                var list = line.split(",");
+                var cleanedDate = list[0]+","+list[1];
+                var found = jQuery.inArray(cleanedDate, ticks_lables);
+                if (found < 0) {
+                    ticks_lables.push(cleanedDate);
+                    ticks.push(i+1);
+                }
             }
         }
 
@@ -87,9 +122,11 @@
 
         var ChangeData = function() {
             $a = slider.getValue();
+            var dataGeo = JSON.parse(lines[$a]);
+            $("#ridersNumber").text(dataGeo.length/4);
             var data = {
                 max: 8,
-                data: JSON.parse(lines[$a])
+                data: dataGeo
             };
             heatmap.setData(data);
 
@@ -97,7 +134,7 @@
 
         var slider = $("#slider").slider({
             min  : 0,
-            value: 0,
+            value: finalValue,
             step: 2,
             ticks: ticks,
             ticks_labels: ticks_lables,

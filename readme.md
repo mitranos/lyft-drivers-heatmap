@@ -4,7 +4,7 @@ This project is Web App to pinpoint the location of Lyft drivers in the Miami Co
 
 To check out the demo go to the [following page](http://lyft.salvatoremitrano.com/).
 
-## Technologies And Frameworks
+## Technologies & Frameworks
 
 The Following Platform is built in PHP on top of the [Laravel Framework](http://laravel.com/) to fetch the data from the Lyft API, and Javascript with the [heatmap.js freamwork](https://www.patrick-wied.at/static/heatmapjs/).
 
